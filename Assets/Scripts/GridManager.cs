@@ -364,6 +364,7 @@ public class GridManager : MonoBehaviour
         }
         UpdateClue();
         SaveTypedLettersForLevel(levelIndex);
+        SaveLevelProgression(levelIndex);
         
     }
 
@@ -456,6 +457,7 @@ public class GridManager : MonoBehaviour
         }
         UpdateClue();
         SaveTypedLettersForLevel(levelIndex);
+        SaveLevelProgression(levelIndex);
     }
 
     public void HighlightWord()
@@ -561,6 +563,7 @@ public class GridManager : MonoBehaviour
         }
 
         SaveTypedLettersForLevel(levelIndex);
+        SaveLevelProgression(levelIndex);
     }
 
     public void RevealAll()
@@ -587,6 +590,7 @@ public class GridManager : MonoBehaviour
         parentGO.transform.GetChild(currentIndex).GetChild(2).gameObject.SetActive(false);
 
         SaveTypedLettersForLevel(levelIndex);
+        SaveLevelProgression(levelIndex);
 
     }
 
@@ -949,6 +953,7 @@ public class GridManager : MonoBehaviour
         PlayerPrefs.DeleteKey($"LevelCompletionStatus{levelIndex}");
         PlayerPrefs.DeleteKey($"LevelWrongShownStatus{levelIndex}");
         PlayerPrefs.DeleteKey($"LevelTimeStatus{levelIndex}");
+        PlayerPrefs.DeleteKey($"LevelProgression{levelIndex}");
 
     }
     public void DarkModeTrigger()
@@ -1050,6 +1055,21 @@ public class GridManager : MonoBehaviour
         SaveLevelCompletionStatus(levelIndex, youWin, timerDisplay.text);
     }
 
+    public void SaveLevelProgression(int levelIndex)
+    {
+        int progression = 0;
+        float percentage = 0;
+        for (int i=0; i < gridLength; i++)
+        {
+            if(parentGO.transform.GetChild(i).GetChild(2).GetComponent<TextMeshPro>().text != "")
+            {
+                progression++;
+            }
+        }
+        percentage = (float)progression / gridLength;
+        PlayerPrefs.SetFloat($"LevelProgression{levelIndex}", percentage);
+        PlayerPrefs.Save();
+    }
     public void ShowErrors()
     {
         for (int i = 0; i < gridLength; i++)
