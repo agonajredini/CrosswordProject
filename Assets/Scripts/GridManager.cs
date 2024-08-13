@@ -430,8 +430,9 @@ public class GridManager : MonoBehaviour
                     {
                         parentGO.transform.GetChild(currentIndex - size).GetChild(2).GetComponent<TextMeshPro>().text = "";
 
-                        currentIndex -= size;
                     }
+                    currentIndex -= size;
+
                 }
 
                 else
