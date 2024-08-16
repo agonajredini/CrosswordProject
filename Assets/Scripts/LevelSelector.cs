@@ -74,4 +74,38 @@ public class LevelSelector : MonoBehaviour
         }
         GridManager.SaveTypedLettersForLevel(GridManager.levelIndex);
     }
+
+    public void SelectedLevelSizeButton(int levelSize)
+    {
+        StartCoroutine(CallMethodAfterDelay(0.01f, levelSize));
+    }
+    IEnumerator CallMethodAfterDelay(float delay, int levelSize)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Call your method after the delay
+        SelectedLevelSize(levelSize);
+    }
+    void SelectedLevelSize(int levelSize)
+    {
+        if (levelSize == 0)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(true);
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            this.transform.GetChild(2).gameObject.SetActive(false);
+        }
+        else if (levelSize == 1)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            this.transform.GetChild(1).gameObject.SetActive(true);
+            this.transform.GetChild(2).gameObject.SetActive(false);
+        }
+        else if (levelSize == 2)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            this.transform.GetChild(2).gameObject.SetActive(true);
+        }
+    }
 }
