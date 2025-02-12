@@ -53,6 +53,8 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> tiles;
 
     public TextAsset puzzlesJsonFile;
+    public TextAsset puzzlesJsonFileMini;
+    public TextAsset puzzlesJsonFileMidi;
     private PuzzleData puzzlesData;
     private Dictionary<int, string> acrossClues;
     private Dictionary<int, string> downClues;
@@ -64,6 +66,7 @@ public class GridManager : MonoBehaviour
     private int gridLength;
     private int size;
 
+    public int gridSize = 0; // 0 = 15x15, 1 = 9x9, 2 = 5x5
 
     public void UpdateGridForLevel(int newLevelIndex)
     {
@@ -85,7 +88,7 @@ public class GridManager : MonoBehaviour
         timerDisplay.text = "00:00:00"; // Reset the timer display
 
         GenerateGrid();
-        LoadTypedLettersForLevel(levelIndex);
+        LoadTypedLettersForLevel(levelIndex, gridSize);
         UpdateClue();
     }
 
@@ -130,7 +133,7 @@ public class GridManager : MonoBehaviour
         {
             CheckWinCondition();
 
-            bool wrongShown = PlayerPrefs.GetInt($"LevelWrongShownStatus{levelIndex}") == 1;
+            bool wrongShown = PlayerPrefs.GetInt($"LevelWrongShownStatus{levelIndex}_{gridSize}") == 1;
 
             if (!wrongShown && !youWin)
             {
@@ -141,7 +144,7 @@ public class GridManager : MonoBehaviour
                     audioSrc.PlayOneShot(notWon);
 
                 hasBeenShowed = true;
-                PlayerPrefs.SetInt($"LevelWrongShownStatus{levelIndex}", hasBeenShowed ? 1 : 0);
+                PlayerPrefs.SetInt($"LevelWrongShownStatus{levelIndex}_{gridSize}", hasBeenShowed ? 1 : 0);
                 PlayerPrefs.Save();
 
             }
@@ -164,8 +167,14 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
+        string jsonString;
 
-        string jsonString = puzzlesJsonFile.text;
+        if (gridSize == 0)
+            jsonString = puzzlesJsonFile.text;
+        else if (gridSize == 1)
+            jsonString = puzzlesJsonFileMidi.text;
+        else
+            jsonString = puzzlesJsonFileMini.text;
 
         acrossClues = new Dictionary<int, string>();
         downClues = new Dictionary<int, string>();
@@ -363,8 +372,8 @@ public class GridManager : MonoBehaviour
             }
         }
         UpdateClue();
-        SaveTypedLettersForLevel(levelIndex);
-        SaveLevelProgression(levelIndex);
+        SaveTypedLettersForLevel(levelIndex, gridSize);
+        SaveLevelProgression(levelIndex, gridSize);
         
     }
 
@@ -457,8 +466,8 @@ public class GridManager : MonoBehaviour
             }
         }
         UpdateClue();
-        SaveTypedLettersForLevel(levelIndex);
-        SaveLevelProgression(levelIndex);
+        SaveTypedLettersForLevel(levelIndex, gridSize);
+        SaveLevelProgression(levelIndex, gridSize);
     }
 
     public void HighlightWord()
@@ -563,8 +572,8 @@ public class GridManager : MonoBehaviour
 
         }
 
-        SaveTypedLettersForLevel(levelIndex);
-        SaveLevelProgression(levelIndex);
+        SaveTypedLettersForLevel(levelIndex, gridSize);
+        SaveLevelProgression(levelIndex, gridSize);
     }
 
     public void RevealAll()
@@ -590,8 +599,8 @@ public class GridManager : MonoBehaviour
         parentGO.transform.GetChild(currentIndex).GetChild(5).gameObject.SetActive(true);
         parentGO.transform.GetChild(currentIndex).GetChild(2).gameObject.SetActive(false);
 
-        SaveTypedLettersForLevel(levelIndex);
-        SaveLevelProgression(levelIndex);
+        SaveTypedLettersForLevel(levelIndex, gridSize);
+        SaveLevelProgression(levelIndex, gridSize);
 
     }
 
@@ -858,7 +867,7 @@ public class GridManager : MonoBehaviour
 
         else return false;
     }
-    public void SaveTypedLettersForLevel(int levelIndex)
+    public void SaveTypedLettersForLevel(int levelIndex, int gridSize)
     {
         List<TileData> tileDataList = new List<TileData>();
 
@@ -881,13 +890,13 @@ public class GridManager : MonoBehaviour
         }
 
         string json = JsonConvert.SerializeObject(tileDataList);
-        string filePath = $"Assets/LevelData/Level_{levelIndex}.json";
+        string filePath = $"Assets/LevelData/Level_{levelIndex}_{gridSize}.json";
         File.WriteAllText(filePath, json);
     }
 
-    private void LoadTypedLettersForLevel(int levelIndex)
+    private void LoadTypedLettersForLevel(int levelIndex, int gridSize)
     {
-        string filePath = $"Assets/LevelData/Level_{levelIndex}.json";
+        string filePath = $"Assets/LevelData/Level_{levelIndex}_{gridSize}.json";
 
         if (File.Exists(filePath))
         {
@@ -938,7 +947,7 @@ public class GridManager : MonoBehaviour
         timerDisplay.text = "00:00:00";
         youWin = false;
 
-        string filePath = $"Assets/LevelData/Level_{levelIndex}.json";
+        string filePath = $"Assets/LevelData/Level_{levelIndex}_{gridSize}.json";
 
         if (File.Exists(filePath))
         {
@@ -951,10 +960,10 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        PlayerPrefs.DeleteKey($"LevelCompletionStatus{levelIndex}");
-        PlayerPrefs.DeleteKey($"LevelWrongShownStatus{levelIndex}");
-        PlayerPrefs.DeleteKey($"LevelTimeStatus{levelIndex}");
-        PlayerPrefs.DeleteKey($"LevelProgression{levelIndex}");
+        PlayerPrefs.DeleteKey($"LevelCompletionStatus{levelIndex}_{gridSize}");
+        PlayerPrefs.DeleteKey($"LevelWrongShownStatus{levelIndex}_{gridSize}");
+        PlayerPrefs.DeleteKey($"LevelTimeStatus{levelIndex}_{gridSize}");
+        PlayerPrefs.DeleteKey($"LevelProgression{levelIndex}_{gridSize}");
 
     }
     public void DarkModeTrigger()
@@ -1049,14 +1058,14 @@ public class GridManager : MonoBehaviour
                 }
                 if(playAudio)
                     audioSrc.PlayOneShot(winSrc);
-                SaveTypedLettersForLevel(levelIndex);
+                SaveTypedLettersForLevel(levelIndex, gridSize);
             }
         }
 
-        SaveLevelCompletionStatus(levelIndex, youWin, timerDisplay.text);
+        SaveLevelCompletionStatus(levelIndex, gridSize, youWin, timerDisplay.text);
     }
 
-    public void SaveLevelProgression(int levelIndex)
+    public void SaveLevelProgression(int levelIndex, int gridSize)
     {
         int progression = 0;
         float percentage = 0;
@@ -1068,7 +1077,7 @@ public class GridManager : MonoBehaviour
             }
         }
         percentage = (float)progression / gridLength;
-        PlayerPrefs.SetFloat($"LevelProgression{levelIndex}", percentage);
+        PlayerPrefs.SetFloat($"LevelProgression{levelIndex}_{gridSize}", percentage);
         PlayerPrefs.Save();
     }
     public void ShowErrors()
@@ -1080,13 +1089,18 @@ public class GridManager : MonoBehaviour
                 parentGO.transform.GetChild(i).GetChild(2).GetComponent<TextMeshPro>().color = Color.red;
             }
         }
-        SaveTypedLettersForLevel(levelIndex);
+        SaveTypedLettersForLevel(levelIndex, gridSize);
     
     }
-    public void SaveLevelCompletionStatus(int levelIndex, bool hasBeaten, string timerDisplay)
+    public void SaveLevelCompletionStatus(int levelIndex, int gridSize, bool hasBeaten, string timerDisplay)
     {
-        PlayerPrefs.SetInt($"LevelCompletionStatus{levelIndex}", hasBeaten ? 1 : 0);
-        PlayerPrefs.SetString($"LevelTimeStatus{levelIndex}", timerDisplay);
+        PlayerPrefs.SetInt($"LevelCompletionStatus{levelIndex}_{gridSize}", hasBeaten ? 1 : 0);
+        PlayerPrefs.SetString($"LevelTimeStatus{levelIndex}_{gridSize}", timerDisplay);
         PlayerPrefs.Save();
+    }
+
+    public void ChangeGridSize(int selectedGridSize)
+    {
+        gridSize = selectedGridSize;
     }
 }

@@ -1,0 +1,48 @@
+{
+  "puzzles": [
+    {
+      "index": 1,
+      "grid": "?????????????????????????",
+      "answers": "BOTIMUJOREFATOSARENËLËMIM",
+      "clues": {
+        "across": {
+          "1" : "Vepër që është shtypur dhe është vënë në qarkullim",
+          "6" : "Pellg me ujë",
+          "7" : "Nxënës i ciklit të ulët të shkollës tetëvjeçare deri në moshën nëntë vjeç",
+          "8" : "Fusha ku zhvillohet një përleshje, një luftim etj.",
+          "9" : "Ngrënja e sipërfaqes me limë a mjet tjetër për ta bërë të sheshtë e të butë"
+        },
+        "down": {
+          "1" : "Gjel me kokë të madhe e të mbuluar me pupla",
+          "2" : "Ojë",
+          "3" : "Kafshë, bimë ose ndonjëherë edhe send, që adhurohej nga disa fise primitive",
+          "4" : "Tallje që bëhet në mënyrë të hollë e të mbuluar, duke folur gjoja me gjithë mend",
+          "5" : "Që është midis dy sendeve"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "grid": "?????????????????????????",
+      "answers": "BAROSUNIKENAMAZASTROREHEN",
+      "clues": {
+        "across": {
+          "1" : "Lyej a spërkat me një bar",
+          "6" : "Që është vetëm një, që s'ka tjetër të ngjashëm me të",
+          "7" : "Falje që bëhet disa herë në ditë sipas fesë islame",
+          "8" : "Që ka të bëjë me yjet ose objektet qiellore",
+          "9" : "Diçka me vlerë të madhe, që huamarrësi ia lë huadhënësit për ta siguruar për kthimin e borxhit"
+        },
+        "down": {
+          "1" : "Që është hapur në tokë për të nxjerrë ujë",
+          "2" : "Që banon prej kohëve më të hershme në një vend",
+          "3" : "Një si elbth me majë",
+          "4" : "Enë që nxë një okë",
+          "5" : "Periudhë e vitit gjatë së cilës zhvillohet një veprimtari e caktuar"
+        }
+      }
+    }
+  
+  
+  ]
+}

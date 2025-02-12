@@ -9,6 +9,7 @@ public class LevelSelector : MonoBehaviour
 {
     public GameObject parentGO;
     public GridManager GridManager;
+    private int gridSize=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +28,11 @@ public class LevelSelector : MonoBehaviour
         foreach (Button button in levelButtons)
         {
             int levelIndex = int.Parse(button.name);
-            int levelStatus = PlayerPrefs.GetInt($"LevelCompletionStatus{levelIndex}");
-            string levelTime = PlayerPrefs.GetString($"LevelTimeStatus{levelIndex}");
-            string filePath = $"Assets/LevelData/Level_{levelIndex}.json";
-            float progress = PlayerPrefs.GetFloat($"LevelProgression{levelIndex}");
+            int gridsize = gridSize;
+            int levelStatus = PlayerPrefs.GetInt($"LevelCompletionStatus{levelIndex}_{gridsize}");
+            string levelTime = PlayerPrefs.GetString($"LevelTimeStatus{levelIndex}_{gridsize}");
+            string filePath = $"Assets/LevelData/Level_{levelIndex}_{gridsize}.json";
+            float progress = PlayerPrefs.GetFloat($"LevelProgression{levelIndex}_{gridsize}");
 
             if (levelStatus == 1)
             {
@@ -72,7 +74,7 @@ public class LevelSelector : MonoBehaviour
         {
             Destroy(parentGO.transform.GetChild(i).gameObject);
         }
-        GridManager.SaveTypedLettersForLevel(GridManager.levelIndex);
+        GridManager.SaveTypedLettersForLevel(GridManager.levelIndex, GridManager.gridSize);
     }
 
     public void SelectedLevelSizeButton(int levelSize)
@@ -89,6 +91,7 @@ public class LevelSelector : MonoBehaviour
     }
     void SelectedLevelSize(int levelSize)
     {
+        gridSize = levelSize;
         if (levelSize == 0)
         {
             this.transform.GetChild(0).gameObject.SetActive(true);

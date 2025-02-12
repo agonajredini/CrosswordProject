@@ -1,0 +1,43 @@
+{
+  "puzzles": [
+    {
+      "index": 1,
+      "grid": "???...???????.????????.????????????...?????...????????????.????????.???????...???",
+      "answers": "TOP...LEZUROR.PUPËFALA.ALETKRIJOHET...FOSIL...MONETAREKËNA.EKIPAZIL.MËNOMEK...RIJ",
+      "clues": {
+        "across": {
+                    "1": "Armë e rëndë zjarri, me grykë të gjatë e të gjërë",
+                    "4": "Nishan i kuq a i zi në fytyrë ose në trupin e njeriut, lyth.",
+                    "7": "Copë e vogël e një shufre çeliku",
+                    "9": "Pjesa e prapme e anijes a e barkës",
+                    "10": "Përshëndetje që i dërgojmë dikujt me anë të një tjetri",
+                    "11": "Mjet",
+                    "12": "Lind a shfaqet diçka që nuk ka qenë më parë",
+                    "14": "Mbeturinë e një kafshe ose bime parahistorike",
+                    "15": "Që lidhet me monedhën",
+                    "18": "Bojë e kuqërreme, e cila nxirret nga përpunimi i gjetheve të thara",
+                    "19": "Grup",
+                    "20": "Institucion ku strehohen pleqtë që janë pa ndihmë",
+                    "21": "Përdoret për të ndjellë bletën që ka ikur.",
+                    "22": "E lodh dikë sa e lë gati pa frymë",
+                    "23": "Përtërij"
+        },
+        "down": {
+              "1": "Pluhuri i lules",
+              "2": "Orët e caktuara kur nis ose kryhet diçka",
+              "3": "Që këndohet me shumë zëra melodikë të pavarur.",
+              "4": "Lloj lakre",
+              "5": "Përkulet",
+              "6": "Inat",
+              "8": "Që ka të bëjë me një krahinë të gjërë",
+              "9": "Ngrihet e shpërndahet si pluhur (për miellin etj.)",
+              "13": "Përdoret për të lidhur dy gjymtyrë të një fjalie",
+              "15": "Pjella femër e pelës",
+              "16": "Mosha e jetës së njeriut në mes të fëmijërisë dhe të pjekurisë",
+              "17": "Përkul",
+              "18": "Posedoj"
+        }
+      }
+    }
+  ]
+}
