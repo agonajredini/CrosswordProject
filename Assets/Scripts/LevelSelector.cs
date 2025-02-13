@@ -9,7 +9,7 @@ public class LevelSelector : MonoBehaviour
 {
     public GameObject parentGO;
     public GridManager GridManager;
-    private int gridSize=0;
+    private int gridSize;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +24,18 @@ public class LevelSelector : MonoBehaviour
 
     private void OnEnable()
     {
+        StartCoroutine(EnableAfterDelay());
+    }
+
+    IEnumerator EnableAfterDelay() 
+    { 
+        yield return new WaitForSeconds(0.03f);
         Button[] levelButtons = GetComponentsInChildren<Button>();
         foreach (Button button in levelButtons)
         {
             int levelIndex = int.Parse(button.name);
             int gridsize = gridSize;
+
             int levelStatus = PlayerPrefs.GetInt($"LevelCompletionStatus{levelIndex}_{gridsize}");
             string levelTime = PlayerPrefs.GetString($"LevelTimeStatus{levelIndex}_{gridsize}");
             string filePath = $"Assets/LevelData/Level_{levelIndex}_{gridsize}.json";
@@ -91,7 +98,6 @@ public class LevelSelector : MonoBehaviour
     }
     void SelectedLevelSize(int levelSize)
     {
-        gridSize = levelSize;
         if (levelSize == 0)
         {
             this.transform.GetChild(0).gameObject.SetActive(true);
@@ -110,5 +116,9 @@ public class LevelSelector : MonoBehaviour
             this.transform.GetChild(1).gameObject.SetActive(false);
             this.transform.GetChild(2).gameObject.SetActive(true);
         }
+    }
+    public void ChangeGridSize(int selectedGridSize)
+    {
+        gridSize = selectedGridSize;
     }
 }
