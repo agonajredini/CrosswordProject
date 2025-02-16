@@ -138,6 +138,8 @@ public class GridManager : MonoBehaviour
             if (!wrongShown && !youWin)
             {
                 fullNoWinUI.SetActive(true);
+                fullNoWinUI.transform.localScale = Vector3.zero;
+                LeanTween.scale(fullNoWinUI, Vector3.one, 0.3f).setEase(LeanTweenType.easeOutBack);
                 transparent.SetActive(true);
 
                 if(playAudio)
@@ -299,6 +301,18 @@ public class GridManager : MonoBehaviour
                         while (parentGO.transform.GetChild(currentIndex).GetComponent<SpriteRenderer>().color == tilecolor || parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().text != "" && !IsFull())
                         {
                             currentIndex++;
+                            if (currentIndex > gridLength - 1)
+                            {
+                                currentIndex = 0;
+                            }
+                            //    currentIndex --;
+                            //    NextClue();
+                            //}
+                            //if (parentGO.transform.GetChild(currentIndex).GetComponent<SpriteRenderer>().color == tilecolor)
+                            //{
+                            //    currentIndex --;
+                            //    NextClue();
+                            //}
                         }
                     }
                     else
@@ -1050,6 +1064,8 @@ public class GridManager : MonoBehaviour
             {
                 youWin = true;
                 youWinUI.SetActive(true);
+                youWinUI.transform.localScale = Vector3.zero;
+                LeanTween.scale(youWinUI, Vector3.one, 0.3f).setEase(LeanTweenType.easeOutBack);
                 transparent.SetActive(true);
                 showTimerWin.text = timerDisplay.text;
                 if(helpButton.helpPanel.activeSelf)

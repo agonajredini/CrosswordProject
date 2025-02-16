@@ -11,13 +11,13 @@ public class LevelSelector : MonoBehaviour
     public GridManager GridManager;
     private int gridSize;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Button[] levelButtons = GetComponentsInChildren<Button>();
         foreach (Button button in levelButtons)
         {
             int levelIndex = int.Parse(button.name);
-            button.onClick.AddListener(() => SelectLevel(levelIndex));
+            button.onClick.AddListener(() => StartCoroutine(SelectLevel(levelIndex)));
 
         }
     }
@@ -70,8 +70,9 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    void SelectLevel(int levelIndex)
+    IEnumerator SelectLevel(int levelIndex)
     {
+        yield return new WaitForSeconds(0.1f);
         GridManager.UpdateGridForLevel(levelIndex);
     }
 
@@ -84,39 +85,39 @@ public class LevelSelector : MonoBehaviour
         GridManager.SaveTypedLettersForLevel(GridManager.levelIndex, GridManager.gridSize);
     }
 
-    public void SelectedLevelSizeButton(int levelSize)
-    {
-        StartCoroutine(CallMethodAfterDelay(0.01f, levelSize));
-    }
-    IEnumerator CallMethodAfterDelay(float delay, int levelSize)
-    {
-        // Wait for the specified delay
-        yield return new WaitForSeconds(delay);
+    //public void SelectedLevelSizeButton(int levelSize)
+    //{
+    //    StartCoroutine(CallMethodAfterDelay(0.01f, levelSize));
+    //}
+    //IEnumerator CallMethodAfterDelay(float delay, int levelSize)
+    //{
+    //    // Wait for the specified delay
+    //    yield return new WaitForSeconds(delay);
 
-        // Call your method after the delay
-        SelectedLevelSize(levelSize);
-    }
-    void SelectedLevelSize(int levelSize)
-    {
-        if (levelSize == 0)
-        {
-            this.transform.GetChild(0).gameObject.SetActive(true);
-            this.transform.GetChild(1).gameObject.SetActive(false);
-            this.transform.GetChild(2).gameObject.SetActive(false);
-        }
-        else if (levelSize == 1)
-        {
-            this.transform.GetChild(0).gameObject.SetActive(false);
-            this.transform.GetChild(1).gameObject.SetActive(true);
-            this.transform.GetChild(2).gameObject.SetActive(false);
-        }
-        else if (levelSize == 2)
-        {
-            this.transform.GetChild(0).gameObject.SetActive(false);
-            this.transform.GetChild(1).gameObject.SetActive(false);
-            this.transform.GetChild(2).gameObject.SetActive(true);
-        }
-    }
+    //    // Call your method after the delay
+    //    SelectedLevelSize(levelSize);
+    //}
+    //void SelectedLevelSize(int levelSize)
+    //{
+    //    if (levelSize == 0)
+    //    {
+    //        this.transform.GetChild(0).gameObject.SetActive(true);
+    //        this.transform.GetChild(1).gameObject.SetActive(false);
+    //        this.transform.GetChild(2).gameObject.SetActive(false);
+    //    }
+    //    else if (levelSize == 1)
+    //    {
+    //        this.transform.GetChild(0).gameObject.SetActive(false);
+    //        this.transform.GetChild(1).gameObject.SetActive(true);
+    //        this.transform.GetChild(2).gameObject.SetActive(false);
+    //    }
+    //    else if (levelSize == 2)
+    //    {
+    //        this.transform.GetChild(0).gameObject.SetActive(false);
+    //        this.transform.GetChild(1).gameObject.SetActive(false);
+    //        this.transform.GetChild(2).gameObject.SetActive(true);
+    //    }
+    //}
     public void ChangeGridSize(int selectedGridSize)
     {
         gridSize = selectedGridSize;
