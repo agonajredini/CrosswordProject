@@ -72,7 +72,7 @@ public class LevelSelector : MonoBehaviour
 
     IEnumerator SelectLevel(int levelIndex)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         GridManager.UpdateGridForLevel(levelIndex);
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SwipeController : MonoBehaviour, IEndDragHandler
 {
 
-    [SerializeField] int maxPage;
+    [SerializeField]public int maxPage;
     int currentPage;
     Vector3 targetPos;
     [SerializeField] Vector3 pageStep;

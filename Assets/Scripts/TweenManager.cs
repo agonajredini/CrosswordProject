@@ -115,7 +115,7 @@ public class TweenManager : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2.5f);
         foreach (GameObject obj in objectsToEnableLevel)
         {
             obj.SetActive(true);
