@@ -13,8 +13,8 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        showTimer = PlayerPrefs.GetInt("ShowTimer", 0) == 1;
-        showName = PlayerPrefs.GetInt("ShowName", 0) == 1;
+        showTimer = PlayerPrefs.GetInt("ShowTimer", 1) == 1;
+        showName = PlayerPrefs.GetInt("ShowName", 1) == 1;
         ShowTimer();
         ShowName();
     }

@@ -79,9 +79,9 @@ public class GridManager : MonoBehaviour
 
         nameDisplay.text = $"Fjalëkryqi {levelIndex}";
         darkMode = PlayerPrefs.GetInt("DarkMode", 0) == 1;
-        skipFilled = PlayerPrefs.GetInt("SkipFilled", 0) == 1;
-        deletePrevious = PlayerPrefs.GetInt("DeletePrevious", 0) == 1;
-        playAudio = PlayerPrefs.GetInt("PlayAudio", 0) == 1;
+        skipFilled = PlayerPrefs.GetInt("SkipFilled", 1) == 1;
+        deletePrevious = PlayerPrefs.GetInt("DeletePrevious", 1) == 1;
+        playAudio = PlayerPrefs.GetInt("PlayAudio", 1) == 1;
 
         // Reset the timer
         timer = 0;
@@ -1084,15 +1084,21 @@ public class GridManager : MonoBehaviour
     public void SaveLevelProgression(int levelIndex, int gridSize)
     {
         int progression = 0;
+        int lengthNotBlack = 0;
         float percentage = 0;
         for (int i=0; i < gridLength; i++)
         {
-            if(parentGO.transform.GetChild(i).GetChild(2).GetComponent<TextMeshPro>().text != "")
+            if(parentGO.transform.GetChild(i).GetComponent<SpriteRenderer>().color != tilecolor)
             {
-                progression++;
+                lengthNotBlack++;
+
+                if(parentGO.transform.GetChild(i).GetChild(2).GetComponent<TextMeshPro>().text != "")
+                    {
+                        progression++;
+                    }
             }
         }
-        percentage = (float)progression / gridLength;
+        percentage = (float)progression / lengthNotBlack;
         PlayerPrefs.SetFloat($"LevelProgression{levelIndex}_{gridSize}", percentage);
         PlayerPrefs.Save();
     }
