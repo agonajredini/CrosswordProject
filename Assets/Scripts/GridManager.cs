@@ -11,6 +11,9 @@ using UnityEngine.EventSystems;
 
 public class GridManager : MonoBehaviour
 {
+    [Header("Ads Manager")]
+    public AdsManager adsManager;
+
     [SerializeField] private Tile tilePrefab;
 
     [SerializeField] private Color tilecolor;
@@ -1067,6 +1070,11 @@ public class GridManager : MonoBehaviour
                 youWinUI.transform.localScale = Vector3.zero;
                 LeanTween.scale(youWinUI, Vector3.one, 0.3f).setEase(LeanTweenType.easeOutBack);
                 transparent.SetActive(true);
+
+                if(adsManager.gameObject.activeSelf)
+                {
+                    adsManager.ShowInterstitialAd();
+                }
                 showTimerWin.text = timerDisplay.text;
                 if(helpButton.helpPanel.activeSelf)
                 {

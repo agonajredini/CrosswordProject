@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TweenManager : MonoBehaviour
 {
+    [Header("Ads Manager")]
+    public AdsManager adsManager;
+
     [Header("Loading Box Settings")]
     public RectTransform loadingBox;
     public float boxMoveSpeed = 0.3f;
@@ -104,7 +107,9 @@ public class TweenManager : MonoBehaviour
             }
 
             LeanTween.moveX(backBox, backBoxInitialPos.x, backBoxMoveSpeed).setDelay(backBoxReturnDelay).setEase(backBoxEaseType).setOnComplete(() => 
-            { 
+            {
+                if(adsManager.gameObject.activeSelf)
+                    adsManager.LoadBannerAd();
                 backBox.gameObject.SetActive(false);
             
             });

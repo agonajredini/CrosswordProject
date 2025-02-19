@@ -20437,7 +20437,7 @@ GameObject:
   - component: {fileID: 963491721}
   - component: {fileID: 963491720}
   m_Layer: 5
-  m_Name: Rifillo
+  m_Name: Buy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20506,7 +20506,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 963491721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1937821103}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1831899456}
+        m_TargetAssemblyTypeName: PopUp, Assembly-CSharp
+        m_MethodName: ClosePopup
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1899841239}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &963491721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30092,6 +30116,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1937821104}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: DestroyBannerAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1439949853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32591,6 +32627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c275046483a312d4d9c250d3a0bdb6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adsManager: {fileID: 1937821104}
   tilePrefab: {fileID: 8846319836172299276, guid: f21e2958e9e0c1f40a3bdf97245a5a82, type: 3}
   tilecolor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   darkModeColor: {r: 0.30980393, g: 0.31764707, b: 0.3529412, a: 1}
@@ -33721,6 +33758,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1937821104}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: DestroyBannerAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -38041,6 +38090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f245c73aabed564db555fd02dce9b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adsManager: {fileID: 1937821104}
   loadingBox: {fileID: 1075294271}
   boxMoveSpeed: 0.2
   boxReturnDelay: 0.2
@@ -39488,6 +39538,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1937821104}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: DestroyBannerAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1886792464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39683,6 +39745,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1500715060}
         m_TargetAssemblyTypeName: HelpButton, Assembly-CSharp
         m_MethodName: HelpPanelIfActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1937821104}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: ShowInterstitialAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41528,6 +41602,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935309665}
   m_CullTransparentMesh: 1
+--- !u!1 &1937821103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937821105}
+  - component: {fileID: 1937821104}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1937821104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937821103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3eb4b6986839d4eb784a99fcaa7d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerId: ca-app-pub-9557064458683323/9432037426
+  rectBannerId: ca-app-pub-9557064458683323/6280703432
+  interId: ca-app-pub-9557064458683323/6895781103
+--- !u!4 &1937821105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937821103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 736.7763, y: 1497.3126, z: -13.795858}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1939875503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 990381443280053112, guid: bd23faf7f6ffeb14d81de5fbcee9ff62, type: 3}
@@ -42262,7 +42382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31cecfbcc907854b9bf678208265897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPage: 3
+  maxPage: 1
   pageStep: {x: -464.5, y: 0, z: 0}
   levelPagesRect: {fileID: 891644371}
   tweenTime: 0.3
