@@ -6,6 +6,10 @@ using System;
 
 public class AdsManager : MonoBehaviour
 {
+    public GameObject adButton;
+
+    public AudioSource audioSource;
+
     [SerializeField]
     private string bannerId;
 
@@ -23,6 +27,7 @@ public class AdsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { 
@@ -223,6 +228,7 @@ public class AdsManager : MonoBehaviour
         if (_interstitialAd != null && _interstitialAd.CanShowAd())
         {
             Debug.Log("Showing interstitial ad.");
+            audioSource.Pause();
             _interstitialAd.Show();
             RegisterReloadHandler(_interstitialAd);
         }
@@ -238,11 +244,12 @@ public class AdsManager : MonoBehaviour
     {
         // Raised when the ad closed full screen content.
         interstitialAd.OnAdFullScreenContentClosed += () =>
-    {
+        {
             Debug.Log("Interstitial Ad full screen content closed.");
-
+            
             // Reload the ad so that we can show another as soon as possible.
             LoadInterstitialAd();
+            audioSource.UnPause();
         };
         // Raised when the ad failed to open full screen content.
         interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
@@ -280,6 +287,13 @@ public class AdsManager : MonoBehaviour
         DestroyBannerAdTop();
         _interstitialAd.Destroy();
 
+    }
+
+    public void DisabelAdButton()
+    {
+        adButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
+        adButton.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().color = new Color32(116, 116, 116, 255);
+        adButton.transform.GetChild(1).gameObject.SetActive(false);
     }
 
     private void OnDisable()

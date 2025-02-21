@@ -1071,10 +1071,6 @@ public class GridManager : MonoBehaviour
                 LeanTween.scale(youWinUI, Vector3.one, 0.3f).setEase(LeanTweenType.easeOutBack);
                 transparent.SetActive(true);
 
-                if(adsManager.gameObject.activeSelf)
-                {
-                    adsManager.ShowInterstitialAd();
-                }
                 showTimerWin.text = timerDisplay.text;
                 if(helpButton.helpPanel.activeSelf)
                 {
@@ -1082,6 +1078,11 @@ public class GridManager : MonoBehaviour
                 }
                 if(playAudio)
                     audioSrc.PlayOneShot(winSrc);
+
+                if(adsManager.gameObject.activeSelf)
+                {
+                    adsManager.ShowInterstitialAd();
+                }
                 SaveTypedLettersForLevel(levelIndex, gridSize);
             }
         }
