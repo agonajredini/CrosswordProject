@@ -13,7 +13,7 @@ public class PrefabButtonController : MonoBehaviour
         if (button != null)
         {
             // Find the TweenManager and add the listener
-            TweenManager tweenManager = FindObjectOfType<TweenManager>();
+            TweenManager tweenManager = FindFirstObjectByType<TweenManager>();
             if (tweenManager != null)
             {
             

@@ -21,7 +21,7 @@ namespace Michsky.MUIP
             {
                 try
                 {
-                    var canvas = (Canvas)GameObject.FindObjectsOfType(typeof(Canvas))[0];
+                    var canvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)[0]; ;
                     dragArea = canvas.GetComponent<RectTransform>();
                 }
 

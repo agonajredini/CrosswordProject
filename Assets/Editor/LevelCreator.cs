@@ -197,7 +197,7 @@ public class LevelCreator : EditorWindow
     private void CallLevelLoadAnimation()
     {
         // Get the instance of the TweenManager and call LevelLoadAnimation
-        TweenManager tweenManager = FindObjectOfType<TweenManager>();
+        TweenManager tweenManager = FindFirstObjectByType<TweenManager>();
         if (tweenManager != null)
         {
             tweenManager.LevelLoadAnimation();
@@ -209,7 +209,7 @@ public class LevelCreator : EditorWindow
     }
     private void UpdateMaxPage()
     {
-        SwipeController swipeController = FindObjectOfType<SwipeController>();
+        SwipeController swipeController = FindFirstObjectByType<SwipeController>();
         if (swipeController != null)
         {
             // Count all parent GameObjects with names starting with "Page"

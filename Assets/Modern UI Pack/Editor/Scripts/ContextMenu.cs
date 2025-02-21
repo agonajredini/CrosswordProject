@@ -55,7 +55,7 @@ namespace Michsky.MUIP
                 {
                     if (Selection.activeGameObject == null)
                     {
-                        var canvas = (Canvas)GameObject.FindObjectsOfType(typeof(Canvas))[0];
+                        var canvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)[0];
                         clone.transform.SetParent(canvas.transform, false);
                     }
 
@@ -70,7 +70,7 @@ namespace Michsky.MUIP
                 catch
                 {
                     CreateCanvas();
-                    var canvas = (Canvas)GameObject.FindObjectsOfType(typeof(Canvas))[0];
+                    var canvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)[0];
                     clone.transform.SetParent(canvas.transform, false);
                     clone.name = clone.name.Replace("(Clone)", "").Trim();
 #if !UNITY_2021_3_OR_NEWER || UNITY_2022_1_OR_NEWER
@@ -96,7 +96,7 @@ namespace Michsky.MUIP
                 {
                     if (Selection.activeGameObject == null)
                     {
-                        var canvas = (Canvas)GameObject.FindObjectsOfType(typeof(Canvas))[0];
+                        var canvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)[0];
                         clone.transform.SetParent(canvas.transform, false);
                     }
 
@@ -112,7 +112,7 @@ namespace Michsky.MUIP
                 catch
                 {
                     CreateCanvas();
-                    var canvas = (Canvas)GameObject.FindObjectsOfType(typeof(Canvas))[0];
+                    var canvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)[0];
                     clone.transform.SetParent(canvas.transform, false);
                     clone.name = "Button";
 #if !UNITY_2021_3_OR_NEWER || UNITY_2022_1_OR_NEWER
