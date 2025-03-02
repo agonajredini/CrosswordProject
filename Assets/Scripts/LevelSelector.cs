@@ -17,7 +17,7 @@ public class LevelSelector : MonoBehaviour
         foreach (Button button in levelButtons)
         {
             int levelIndex = int.Parse(button.name);
-            string levelName = button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+            string levelName = button.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text;
             button.onClick.AddListener(() => StartCoroutine(SelectLevel(levelIndex, levelName)));
 
         }
@@ -44,27 +44,27 @@ public class LevelSelector : MonoBehaviour
 
             if (levelStatus == 1)
             {
-                button.transform.GetChild(2).gameObject.SetActive(true);
+                button.transform.GetChild(4).gameObject.SetActive(true);
+                button.transform.GetChild(5).gameObject.SetActive(true);
+                button.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = levelTime;
                 button.transform.GetChild(3).gameObject.SetActive(true);
-                button.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = levelTime;
-                button.transform.GetChild(1).gameObject.SetActive(true);
-                button.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = 1;
+                button.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = 1;
 
             }
             else
             {
-                button.transform.GetChild(2).gameObject.SetActive(false);
-                button.transform.GetChild(3).gameObject.SetActive(false);
-                button.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "";
+                button.transform.GetChild(4).gameObject.SetActive(false);
+                button.transform.GetChild(5).gameObject.SetActive(false);
+                button.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "";
                 if (File.Exists(filePath))
                 {
-                    button.transform.GetChild(1).gameObject.SetActive(true);
-                    button.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = progress;
+                    button.transform.GetChild(3).gameObject.SetActive(true);
+                    button.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = progress;
                 }
                 else
                 {
-                    button.transform.GetChild(1).gameObject.SetActive(false);
-                    button.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = 0;
+                    button.transform.GetChild(3).gameObject.SetActive(false);
+                    button.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = 0;
                 }
 
             }
