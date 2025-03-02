@@ -71,7 +71,7 @@ public class GridManager : MonoBehaviour
 
     public int gridSize = 0; // 0 = 15x15, 1 = 9x9, 2 = 5x5
 
-    public void UpdateGridForLevel(int newLevelIndex)
+    public void UpdateGridForLevel(int newLevelIndex, string levelName)
     {
         levelIndex = newLevelIndex;
         currentIndex = 0;
@@ -80,7 +80,7 @@ public class GridManager : MonoBehaviour
         youWin = false;
         hasBeenShowed = false;
 
-        nameDisplay.text = $"Fjalëkryqi {levelIndex}";
+        nameDisplay.text = levelName;
         darkMode = PlayerPrefs.GetInt("DarkMode", 0) == 1;
         skipFilled = PlayerPrefs.GetInt("SkipFilled", 1) == 1;
         deletePrevious = PlayerPrefs.GetInt("DeletePrevious", 1) == 1;

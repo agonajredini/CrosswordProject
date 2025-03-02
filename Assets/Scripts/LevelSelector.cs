@@ -17,7 +17,8 @@ public class LevelSelector : MonoBehaviour
         foreach (Button button in levelButtons)
         {
             int levelIndex = int.Parse(button.name);
-            button.onClick.AddListener(() => StartCoroutine(SelectLevel(levelIndex)));
+            string levelName = button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+            button.onClick.AddListener(() => StartCoroutine(SelectLevel(levelIndex, levelName)));
 
         }
     }
@@ -70,10 +71,10 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    IEnumerator SelectLevel(int levelIndex)
+    IEnumerator SelectLevel(int levelIndex, string levelName)
     {
         yield return new WaitForSeconds(0.2f);
-        GridManager.UpdateGridForLevel(levelIndex);
+        GridManager.UpdateGridForLevel(levelIndex, levelName);
     }
 
     public void ClearLevel()
