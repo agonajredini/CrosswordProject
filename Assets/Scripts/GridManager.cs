@@ -61,7 +61,7 @@ public class GridManager : MonoBehaviour
     private PuzzleData puzzlesData;
     private Dictionary<int, string> acrossClues;
     private Dictionary<int, string> downClues;
-
+    private List<string> circleNumbers;
 
     private int tileNumber = 1;
 
@@ -183,6 +183,7 @@ public class GridManager : MonoBehaviour
 
         acrossClues = new Dictionary<int, string>();
         downClues = new Dictionary<int, string>();
+        circleNumbers = new List<string>();
 
         puzzlesData = JsonConvert.DeserializeObject<PuzzleData>(jsonString);
 
@@ -204,6 +205,13 @@ public class GridManager : MonoBehaviour
         {
             cam.transform.position = new Vector3(7, 2f, -10);
             cam.orthographicSize = 16f;
+        }
+        if (puzzlesData.puzzles[levelIndex - 1].Circles != null && puzzlesData.puzzles[levelIndex - 1].Circles.Any()) // Check if the 'circles' field exists and is not null or empty
+        {
+            foreach (var circlenumber in puzzlesData.puzzles[levelIndex - 1].Circles)
+            {
+                circleNumbers.Add(circlenumber);
+            }
         }
 
         foreach (var pair in puzzlesData.puzzles[levelIndex - 1].clues.across)
@@ -257,6 +265,11 @@ public class GridManager : MonoBehaviour
                     parentGO.transform.GetChild(i).GetChild(1).GetComponent<TextMeshPro>().text = tileNumber.ToString();
                     tileNumber++;
                 }
+            }
+
+            if(circleNumbers.Contains(i.ToString()))
+            {
+                parentGO.transform.GetChild(i).GetChild(6).GetChild(1).gameObject.SetActive(true);
             }
         }
 
@@ -633,6 +646,7 @@ public class GridManager : MonoBehaviour
         public string grid;
         public string answers;
         public Clues clues;
+        public List<string> Circles { get; set; }
     }
 
     [Serializable]
