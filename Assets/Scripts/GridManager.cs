@@ -269,7 +269,7 @@ public class GridManager : MonoBehaviour
 
             if(circleNumbers.Contains(i.ToString()))
             {
-                parentGO.transform.GetChild(i).GetChild(6).GetChild(1).gameObject.SetActive(true);
+                parentGO.transform.GetChild(i-1).GetChild(6).GetChild(1).gameObject.SetActive(true);
             }
         }
 
@@ -1056,7 +1056,7 @@ public class GridManager : MonoBehaviour
                     parentGO.transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.white;
                     parentGO.transform.GetChild(i).GetChild(0).GetComponent<TextMeshPro>().color = Color.black;
                     parentGO.transform.GetChild(i).GetChild(1).GetComponent<TextMeshPro>().color = Color.black;
-                    parentGO.transform.GetChild(i).GetChild(3).GetComponent<SpriteRenderer>().color = new Color32(255, 233, 0, 255);
+                    parentGO.transform.GetChild(i).GetChild(3).GetComponent<SpriteRenderer>().color = new Color32(255, 233, 0, 175);
                     parentGO.transform.GetChild(i).GetChild(6).GetChild(1).GetComponent<UnityEngine.UI.Image>().color = Color.black;
 
 
