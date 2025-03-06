@@ -314,7 +314,7 @@ public class GridManager : MonoBehaviour
                 {
                     if (skipFilled)
                     {
-                        while (parentGO.transform.GetChild(currentIndex).GetComponent<SpriteRenderer>().color == tilecolor || parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().text != "" && !IsFull())
+                        while (parentGO.transform.GetChild(currentIndex).GetComponent<SpriteRenderer>().color == tilecolor || parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().text != ""  && parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().color != Color.red && !IsFull())
                         {
                             currentIndex++;
                             if (currentIndex > gridLength - 1)
@@ -358,7 +358,7 @@ public class GridManager : MonoBehaviour
                 {
                     if (skipFilled)
                     {
-                        while (parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().text != "" && !IsFull())
+                        while (parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().text != "" && parentGO.transform.GetChild(currentIndex).GetChild(2).GetComponent<TextMeshPro>().color != Color.red && !IsFull())
                         {
                             currentIndex += size;
                             if (currentIndex > gridLength - 1)
